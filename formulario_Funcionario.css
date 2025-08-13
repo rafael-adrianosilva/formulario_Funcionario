@@ -1,0 +1,38 @@
+h1{
+    font-family:'Courier New', Courier, monospace;
+    font-size: 16px;
+    text-align: center;
+}
+
+fieldset input{
+    display: flex;
+}
+
+fieldset{
+    border: 3px 3px 3px black;
+    border-radius: 25px;
+    width: 18%;
+    height: 18%;
+    background-color: blanchedalmond;
+    justify-content: center;
+    align-items: center;
+}
+
+.didi{
+    border: 3px 3px 3px black;
+}
+
+.horaTrabalhada .renda, input{
+    width: 65%;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color:tan;
+}
+
+.mail .nome, input {
+    width: 65%;
+}
