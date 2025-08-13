@@ -60,18 +60,18 @@
         $rgF = $_POST["rgFuncionario"];
         $horaF = $_POST["horasTrabalhada"];
         $ganhoF = $_POST["recebePerhora"];
-
-
-        
-        
-        $pasta_destino = "pasta/";
         $curriculo = $_FILES["arquivo"];
-        $toDoc = "$nomeF | $emailF | $telF | $rgF | $horaF | $ganhoF | $curriculo \n"; // Esse $toDoc é o nome da variável que vai jogar as info pro documento que eu pedir exemplo (Roberto Fagundes | robertolover@gmail.com | 4002-8922 | 444.444.333-22 | etc)  
-        file_put_contents("arquivos/registroFuncionario.txt", $toDoc, FILE_APPEND);
+        $pasta_destino = "pasta/";
+        $nome_arquivo = "";
+        
+        
+        
+        
         
         if($curriculo["error"] === UPLOAD_ERR_OK) {
             $nome_temp = $curriculo["tmp_name"];
             $nome_final = $pasta_destino . basename($curriculo["name"]);
+            $nome_arquivo = basename($curriculo["name"]);
             
             if(!file_exists($pasta_destino)) {
                 mkdir($pasta_destino, 0755, true); //Cria pasta se não existir
@@ -85,6 +85,8 @@
         } else {
             echo "✖️ erro ao fazer upload";
         }
+        $toDoc = "$nomeF | $emailF | $telF | $rgF | $horaF | $ganhoF | $nome_arquivo\n"; // Esse $toDoc é o nome da variável que vai jogar as info pro documento que eu pedir exemplo (Roberto Fagundes | robertolover@gmail.com | 4002-8922 | 444.444.333-22 | etc)  
+        file_put_contents("arquivos/registroFuncionario.txt", $toDoc, FILE_APPEND);
     }
 
     
