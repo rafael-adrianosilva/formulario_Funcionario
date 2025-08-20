@@ -33,7 +33,7 @@
                 <div class="trabalhada">
                     Horas Trabalhadas:
                     <div class="horaTrabalhada">
-                    <input type="number" name="horasTrabalhada" placeholder="Horas trabalhada no mês" class="horaTrabalhada" required> <!-- Está solicitando ao cadastrante, quantas horas ela trabalha no mês -->
+                        <input type="number" name="horasTrabalhada" placeholder="Horas trabalhada no mês" class="horaTrabalhada" required> <!-- Está solicitando ao cadastrante, quantas horas ela trabalha no mês -->
                     </div>
                 </div>
                 <div class="renda">
@@ -64,20 +64,20 @@
         $pasta_destino = "pasta/";
         $nome_arquivo = "";
         $ganhoTF = $horaF * $ganhoF;
-        
-        
-        
-        
-        
-        if($curriculo["error"] === UPLOAD_ERR_OK) { // ele enviará o arquivo para uma pasta separada e dirá se der tudo certo na transferência do arquivo
+
+
+
+
+
+        if ($curriculo["error"] === UPLOAD_ERR_OK) { // ele enviará o arquivo para uma pasta separada e dirá se der tudo certo na transferência do arquivo
             $nome_temp = $curriculo["tmp_name"];
             $nome_final = $pasta_destino . basename($curriculo["name"]);
             $nome_arquivo = basename($curriculo["name"]);
-            
-            if(!file_exists($pasta_destino)) {
+
+            if (!file_exists($pasta_destino)) {
                 mkdir($pasta_destino, 0755, true); //Cria pasta se não existir
             }
-            
+
             if (move_uploaded_file($nome_temp, $nome_final)) { // Ele transmitirá uma mensagem ao enviar o arquivo (segue anexado abaixo para entender)
                 echo "Arquivo enviado com sucesso!"; // SE Ele enviar sem erro, imprimirá que deu certo
             } else {
@@ -86,13 +86,13 @@
         } else {
             echo "✖️ erro ao fazer upload"; // E aqui ele diz que dará erro no Upload do arquivo pro site
         }
-        $toDoc = "$nomeF | $emailF | $telF | $rgF | $horaF | $ganhoF | $nome_arquivo | R$$ganhoTF\n"; // Esse $toDoc é o nome da variável que vai jogar as info pro documento que eu pedir exemplo (Roberto Fagundes | robertolover@gmail.com | 4002-8922 | 444.444.333-22 | etc)  
+        $toDoc = "$nomeF | $emailF | $telF | $rgF | $horaF | $ganhoF | $nome_arquivo | $ganhoTF\n"; // Esse $toDoc é o nome da variável que vai jogar as info pro documento que eu pedir exemplo (Roberto Fagundes | robertolover@gmail.com | 4002-8922 | 444.444.333-22 | etc)  
         file_put_contents("arquivos/registroFuncionario.txt", $toDoc, FILE_APPEND);
     }
 
-    
-       
-    
+
+
+
     ?>
 </body>
 
