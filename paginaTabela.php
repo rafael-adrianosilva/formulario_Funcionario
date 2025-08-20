@@ -9,7 +9,8 @@
 
 <body>
     <form method="post" action="paginaTabela.php">
-        <input type="text" name="nome" placeholder="Digite o nome do Funcionário" style="align-content: center;">
+        <input type="text" name="nome" placeholder="Insira as horas do Funcionario" style="align-content: center;">
+        <input type="number" name="salario" placeholder="Insira quanto o funcionario recebe" style="align-content: center;">
         <button type="submit">Pesquisar</button>
     </form>
 
@@ -18,6 +19,7 @@
     if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
         $pesquisa = $_POST["nome"];
+        $salario = $_POST["salario"];
 
         if (file_exists("arquivos/registroFuncionario.txt")) {
             $linhas = file("arquivos/registroFuncionario.txt");
@@ -47,9 +49,7 @@
             // Linha de dados
             foreach ($dados_linhas as $linha_dados) {
                 echo "<tr>";
-                if ($pesquisa == $linha_dados[0] || $pesquisa == null) {
-                    
-
+                if ($pesquisa == $linha_dados[0] || $pesquisa == null && $salario <= $linha_dados[7]) {
                     for ($i = 0; $i < $max_campos; $i++) {
                         $valor = isset($linha_dados[$i]) ? htmlspecialchars($linha_dados[$i]) : '';
                         echo "<td>$valor</td>";
@@ -57,11 +57,12 @@
                     echo "</tr>";
                 }
             }
-            echo "</table>";
-        } else {
-            echo "Arquivo não encontrado.";
         }
+        echo "</table>";
+    } else {
+        echo "Arquivo não encontrado.";
     }
+
     ?>
 </body>
 
